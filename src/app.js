@@ -18,6 +18,8 @@ import routes from './routes';
 const history = createHistory();
 const store = configureStore();
 
+localStorage.nick = localStorage.nick || `dummy-${Math.floor(Math.random()*1000)}`;
+
 const client = Stanza.createClient({
   jid: 'anon@anon.talky.me',
   wsURL: 'wss://anon.talky.me/xmpp-websocket',
@@ -33,10 +35,8 @@ const client = Stanza.createClient({
 client.sm.allowResume = false;
 bindToDispatch(client, store.dispatch);
 
-client.on('*', console.log.bind(console));
-
 client.connect();
-
+window.client = client;
 
 ReactDOM.render((
   <Provider store={store}>

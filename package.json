@@ -29,6 +29,7 @@
     "eslint-plugin-react": "^3.11.3",
     "file-loader": "^0.8.5",
     "getconfig": "^2.2.0",
+    "gh-pages": "^0.8.0",
     "hjs-webpack": "^5.1.0",
     "postcss-loader": "^0.8.0",
     "precommit-hook": "^3.0.0",

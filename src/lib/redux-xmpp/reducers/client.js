@@ -10,7 +10,8 @@ export default function (state = defaultState, action) {
     case SESSION_STARTED:
       return {
         ...state,
-        connected: true
+        connected: true,
+        jid: action.jid
       };
     default:
       return state;

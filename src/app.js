@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import logger from 'andlog';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
+import Stanza from 'stanza.io';
+import { bindToDispatch } from './xmpp';
 
 import './styles/main.styl';
 
@@ -16,11 +18,28 @@ import routes from './routes';
 const history = createHistory();
 const store = configureStore();
 
+const client = Stanza.createClient({
+  jid: 'anon@anon.talky.me',
+  wsURL: 'wss://anon.talky.me/xmpp-websocket',
+  transport: 'websocket',
+  useStreamManagement: true,
+  useStreamResumption: false,
+  capsNode: 'talky.io',
+  softwareVersion: {
+    name: 'Talky'
+  }
+});
+
+client.sm.allowResume = false;
+bindToDispatch(client, store.dispatch);
+
+client.on('*', console.log.bind(console));
+
+client.connect();
+
 
 ReactDOM.render((
   <Provider store={store}>
     <Router history={history} routes={routes} />
   </Provider>
 ), document.querySelector('#root'));
-
-

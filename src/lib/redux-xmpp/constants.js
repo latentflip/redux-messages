@@ -1,0 +1,1 @@
+export const SESSION_STARTED = 'XMPP/SESSION_STARTED';

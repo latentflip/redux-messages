@@ -1,3 +1,4 @@
 module.exports = {
-  env: 'dev'
+  env: 'dev',
+  urlBase: '/'
 };

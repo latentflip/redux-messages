@@ -1,3 +1,4 @@
+import config from 'config';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import logger from 'andlog';
@@ -12,10 +13,12 @@ import Config from 'config';
 logger.log('Config.env:', Config.env);
 
 import { Router } from 'react-router';
-import { createHistory } from 'history';
+import { createHistory, useBasename } from 'history';
 import routes from './routes';
 
-const history = createHistory();
+const history = useBasename(createHistory)({
+  basename: config.urlBase
+});
 const store = configureStore();
 
 localStorage.nick = localStorage.nick || `dummy-${Math.floor(Math.random()*1000)}`;

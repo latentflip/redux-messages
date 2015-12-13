@@ -1,3 +1,4 @@
 module.exports = {
-  env: 'production'
+  env: 'production',
+  urlBase: '/redux-messages'
 };
